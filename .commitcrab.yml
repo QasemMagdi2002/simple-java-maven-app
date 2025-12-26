@@ -1,0 +1,21 @@
+version: 1
+language: java
+
+stages:
+  - build
+  - test
+
+jobs:
+  build:
+    stage: build
+    script:
+      - mvn -B -DskipTests package
+
+  test:
+    stage: test
+    needs: [build]
+    script:
+      - mvn -B test
+
+only:
+  - master
