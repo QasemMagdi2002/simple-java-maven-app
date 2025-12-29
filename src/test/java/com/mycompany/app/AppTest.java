@@ -1,10 +1,11 @@
 package com.mycompany.app;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class AppTest {
-
+/**
+ * Unit test for simple App.
+ */
+public class AppTest
+{
     @Test
     public void testAppConstructor() {
         App app1 = new App();
@@ -13,9 +14,9 @@ public class AppTest {
     }
 
     @Test
-    public void testAppMessage() {
+    public void testAppMessage()
+    {
         App app = new App();
-        // This will FAIL because the expected string is now different
-        assertEquals("This should fail!", app.getMessage());
+        assertEquals("Hello World!", app.getMessage());
     }
 }
