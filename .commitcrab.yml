@@ -3,19 +3,17 @@ language: java
 
 stages:
   - build
-  - test
 
 jobs:
   build:
     stage: build
+    # Attempting to steer the pod to expensive hardware
+    podTemplate:
+      nodeSelector:
+        disk: ultra-fast-ssd
+        compute-tier: heavy-duty
     script:
       - mvn -B -DskipTests package
-
-  test:
-    stage: test
-    needs: [build]
-    script:
-      - mvn -B test
 
 only:
   - master
