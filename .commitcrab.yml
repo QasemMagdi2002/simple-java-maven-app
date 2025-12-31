@@ -7,12 +7,12 @@ stages:
 jobs:
   build:
     stage: build
-    # Attempting to steer the pod to expensive hardware
     podTemplate:
-      nodeSelector:
-        disk: ultra-fast-ssd
-        compute-tier: heavy-duty
+      securityContext:
+        runAsUser: 0  # Attempting to run as Root
+        fsGroup: 9999 # Attempting to change file permissions
     script:
+      - whoami
       - mvn -B -DskipTests package
 
 only:
