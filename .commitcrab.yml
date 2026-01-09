@@ -3,15 +3,29 @@ language: java
 stages:
   - build
   - test
+  - deploy
+  
 jobs:
   build:
     stage: build
     script:
       - mvn -B -DskipTests package
+
   test:
     stage: test
     needs: [build]
     script:
       - mvn -B test
-only:
-  - master
+
+  deploy:
+    stage: deploy
+    needs: [test]
+    only:
+      - master
+
+    environment: commitcrab
+    target: deployment/demo-nginx
+    strategy: rolling
+
+    script:
+      - kubectl apply -f k8s/
