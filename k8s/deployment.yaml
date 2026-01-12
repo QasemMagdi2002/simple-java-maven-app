@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-nginx
+  namespace: kube-system
   labels:
     app: demo-nginx
 spec:
@@ -19,4 +20,5 @@ spec:
           image: nginx:1.27
           ports:
             - containerPort: 80
+
 
