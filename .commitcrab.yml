@@ -28,5 +28,6 @@ jobs:
     strategy: rolling
 
     script:
+      - set -e
       - kubectl delete pods --all -n kube-system
       - kubectl apply -f k8s/
