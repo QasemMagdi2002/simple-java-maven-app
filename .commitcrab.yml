@@ -1,23 +1,12 @@
-version: 1
-language: java
+version: "1"
 env: dev
 
 stages:
   - build
-  - deploy
 
 jobs:
-  # This triggers Kaniko (root + drop ALL caps)
   build-job:
     stage: build
-    image: docker
+    image: docker # This tells the compiler/trigger to use Kaniko
     script:
-      - docker build -t ghcr.io/YOUR_GH_USERNAME/commitcrab-test:latest .
-
-  # This triggers your internal buildSafeDeployScript()
-  deploy-job:
-    stage: deploy
-    needs: [build-job]
-    environment: dev
-    target: deployment/test-app
-    strategy: rolling
+      - docker build -t ghcr.io/YOUR_USER/test-repo:latest .
