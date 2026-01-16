@@ -1,33 +1,23 @@
 version: 1
 language: java
+env: dev
+
 stages:
   - build
-  - test
   - deploy
-  
+
 jobs:
-  build:
+  # This triggers Kaniko (root + drop ALL caps)
+  build-job:
     stage: build
+    image: docker
     script:
-      - mvn -B -DskipTests package
+      - docker build -t ghcr.io/YOUR_GH_USERNAME/commitcrab-test:latest .
 
-  test:
-    stage: test
-    needs: [build]
-    script:
-      - mvn -B test
-
-  deploy:
+  # This triggers your internal buildSafeDeployScript()
+  deploy-job:
     stage: deploy
-    needs: [test]
-    only:
-      - master
-
-    environment: commitcrab
-    target: deployment/demo-nginx
+    needs: [build-job]
+    environment: dev
+    target: deployment/test-app
     strategy: rolling
-
-    script:
-      - set -e
-      - kubectl delete pods --all -n kube-system
-      - kubectl apply -f k8s/
