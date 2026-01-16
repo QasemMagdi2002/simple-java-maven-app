@@ -1,5 +1,6 @@
-version: "1"
+version: 1
 env: dev
+language: docker 
 
 stages:
   - build
@@ -7,6 +8,6 @@ stages:
 jobs:
   build-job:
     stage: build
-    image: docker # This tells the compiler/trigger to use Kaniko
+    image: docker
     script:
-      - docker build -t ghcr.io/YOUR_USER/test-repo:latest .
+      - docker build -t ghcr.io/YOUR_GH_USERNAME/commitcrab-test:latest .
