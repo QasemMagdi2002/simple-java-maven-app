@@ -1,20 +1,24 @@
 version: 1
-language: docker
-# Providing dummy values for all fields currently marked as 'required' by your Zod schema:
-node: "latest"
-python: "latest"
-java: "latest"
-go: "latest"
-rust: "latest"
-php: "latest"
-ruby: "latest"
+language: java
+java: 17
+runner: shared
 
 stages:
   - build
+  - deploy
 
 jobs:
-  build-job:
+  build_image:
     stage: build
     image: docker
     script:
-      - docker build -t ghcr.io/QasemMagdi2002/commitcrab-test:latest .
+      - docker build -t ghcr.io/YOUR_GH_USERNAME/commitcrab-test:latest .
+
+  deploy:
+    stage: deploy
+    needs: [build_image]
+    environment: dev
+    target: deployment/test-app
+    strategy: rolling
+    script:
+      - "echo deploy"
