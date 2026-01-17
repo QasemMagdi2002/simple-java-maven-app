@@ -12,7 +12,7 @@ jobs:
     stage: build
     image: docker
     script:
-      - docker build -t ghcr.io/YOUR_GH_USERNAME/commitcrab-test:latest .
+      - docker build -t ghcr.io/qasemmagdi2002/commitcrab-test:latest .
 
   deploy:
     stage: deploy
