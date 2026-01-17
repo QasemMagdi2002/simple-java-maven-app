@@ -1,6 +1,6 @@
 version: 1
 language: java
-java: 17
+java: 21
 runner: shared
 
 stages:
