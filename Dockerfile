@@ -1,5 +1,5 @@
 # STAGE 1: Build stage (using a small Maven image)
-FROM maven:3.9.6-eclipse-temurin-17-alpine AS build
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
 # Copy only pom.xml first to leverage Docker layer caching for dependencies
@@ -11,7 +11,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # STAGE 2: Runtime stage (using a minimal JRE image)
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Create a non-root user for security
