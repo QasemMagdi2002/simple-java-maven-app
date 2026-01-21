@@ -18,7 +18,7 @@ jobs:
     stage: deploy
     needs: [build_image]
     environment: dev
-    target: deployment/test-app
+    target: deployment/demo-nginx
     strategy: rolling
     script:
       - "echo deploy"
