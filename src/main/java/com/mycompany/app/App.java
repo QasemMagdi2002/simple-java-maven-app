@@ -19,6 +19,7 @@ public class App {
             return "Hello World!";
         }
 
+        
         @GetMapping("/healthz")
         public String health() {
             return "ok";
