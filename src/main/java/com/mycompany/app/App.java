@@ -18,7 +18,6 @@ public class App {
         public String hello() {
             return "Hello World!";
         }
-
         
         @GetMapping("/healthz")
         public String health() {
