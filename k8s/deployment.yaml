@@ -15,10 +15,7 @@ spec:
         app: demo-nginx
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.27
+        - name: app
+          image: ghcr.io/qasemmagdi2002/commitcrab-test:latest
           ports:
-            - containerPort: 80
-
-
-
+            - containerPort: 8080
