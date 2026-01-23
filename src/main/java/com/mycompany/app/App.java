@@ -1,19 +1,27 @@
 package com.mycompany.app;
 
-/**
- * Hello world!
- */
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
 public class App {
 
-    private static final String MESSAGE = "Hello World!";
-
-    public App() {}
-
     public static void main(String[] args) {
-        System.out.println(MESSAGE);
-    } 
-    
-    public String getMessage() {
-        return MESSAGE;
+        SpringApplication.run(App.class, args);
+    }
+
+    @RestController
+    static class HelloController {
+        @GetMapping("/")
+        public String hello() {
+            return "Hello World!";
+        }
+
+        @GetMapping("/healthz")
+        public String health() {
+            return "ok";
+        }
     }
 }
