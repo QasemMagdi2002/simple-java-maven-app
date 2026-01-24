@@ -24,4 +24,8 @@ public class App {
             return "ok";
         }
     }
+
+    public String getMessage() {
+        return "Hello World!";
+    }
 }
